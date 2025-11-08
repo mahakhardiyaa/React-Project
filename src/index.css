@@ -1,0 +1,13 @@
+body{
+  background-color: black;
+}
+
+.custom-card .ant-btn-default {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.custom-card .ant-btn-default:hover {
+  background-color: grey !important;
+  color: yellow !important;          
+  border-color: grey !important;    
+}
