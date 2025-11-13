@@ -9,10 +9,10 @@ const favoritesSlice = createSlice({
   initialState,
   reducers: {
     addToFavorites: (state, action) => {
-      const movie = action.payload; //id-> movie
+      const movie = action.payload; 
       const exists = state.movies.some((fav) => fav.imdbID === movie.imdbID);
       if (!exists) {
-        state.movies.push(movie); //push this in our movies array---direct mutation done
+        state.movies.push(movie); 
         localStorage.setItem("favorites", JSON.stringify(state.movies));
       }
     },

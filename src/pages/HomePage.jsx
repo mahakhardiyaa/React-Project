@@ -3,31 +3,36 @@ import { useQuery } from "@tanstack/react-query";
 import { fetchMovies } from "../api/service";
 import MovieCard from "../components/MovieCard";
 import Navbar from "../components/Navbar";
+import Footer from "../components/footer";
+import "../static/css/HomePage.css";
 
 function HomePage() {
-  const [searchTerm, setSearchTerm] = useState("christmas");
+  const [searchTerm, setSearchTerm] = useState("mean");
 
-  const { data: movies = [], isLoading, refetch } = useQuery({
+  const { data = {}, isLoading, refetch } = useQuery({
     queryKey: ["movies", searchTerm],
     queryFn: () => fetchMovies(searchTerm),
     enabled: false,
   });
 
+  const movies = data.movies || [];
+  const error = data.error;
+
   const handleSearch = () => {
-    if(searchTerm.trim() !== ""){
-            refetch();
-        }
-    };
+    if (searchTerm.trim() !== "") {
+      refetch();
+    }
+  };
 
-  useEffect(()=>{
-    const handler = setTimeout(()=>{
-        if(searchTerm.trim() !== ""){
-            refetch();
-        }
-    }, 500)
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      if (searchTerm.trim() !== "") {
+        refetch();
+      }
+    }, 500);
 
-    return ()=> clearTimeout(handler);
-  }, [searchTerm, refetch])
+    return () => clearTimeout(handler);
+  }, [searchTerm, refetch]);
 
   return (
     <>
@@ -36,28 +41,27 @@ function HomePage() {
         setSearchTerm={setSearchTerm}
         handleSearch={handleSearch}
       />
-      <div style={{ padding: "20px" }}>
-
+      <div className="homepage-container">
         {isLoading ? (
-          <p style={{ textAlign: "center", color: "white" }}>
-            Loading...</p>
+          <p className="loading-text">Loading...</p>
+        ) : error ? (
+          <h3 className="loading-text">{error}</h3>
+        ) : movies.length === 0 ? (
+          <h3 className="loading-text">No Results found!</h3>
         ) : (
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
-              gap: "16px"
-            }}
-          >
-            {movies.map((movie, index) => (
-              <MovieCard
-                key={index}
-                movie={movie}
-              />
-            ))}
+          <>
+          <div className="homepage-title">
+            <h3>Now Streaming!</h3>
           </div>
+            <div className="movies-grid">
+              {movies.map((movie, index) => (
+                <MovieCard key={index} movie={movie} />
+              ))}
+            </div>
+          </>
         )}
       </div>
+      <Footer/>
     </>
   );
 }

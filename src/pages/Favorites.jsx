@@ -1,13 +1,17 @@
 import { useSelector } from "react-redux";
 import MovieCard from "../components/MovieCard";
+import Navbar from "../components/Navbar";
+import "../static/css/HomePage.css";
 
 const FavoritesPage = () => {
   const favorites = useSelector((state) => state.favorites.movies);
 
   return (
-    <div style={{ padding: 20 }}>
+    <>
+    <Navbar/>
+     <div style={{ padding: 20 }}>
       <h2 style={{ color: "white" }}>❤️ Your Favorites</h2>
-      <div style={{ display: "flex", flexWrap: "wrap", gap: "20px" }}>
+      <div className="movies-grid">
         {favorites.length > 0 ? (
           favorites.map((movie) => (
             <MovieCard key={movie.imdbID} movie={movie} />
@@ -17,6 +21,7 @@ const FavoritesPage = () => {
         )}
       </div>
     </div>
+    </>
   );
 };
 
