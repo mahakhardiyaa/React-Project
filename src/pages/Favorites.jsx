@@ -10,14 +10,14 @@ const FavoritesPage = () => {
     <>
     <Navbar/>
      <div style={{ padding: 20 }}>
-      <h2 style={{ color: "white" }}>❤️ Your Favorites</h2>
+      <h2 className="homepage-title">Your personal blockbuster collection🔥</h2>
       <div className="movies-grid">
         {favorites.length > 0 ? (
           favorites.map((movie) => (
             <MovieCard key={movie.imdbID} movie={movie} />
           ))
         ) : (
-          <p style={{ color: "gray" }}>No favorites yet!</p>
+          <p style={{ color: "gray" }}>Oops… no favorites yet! Let’s fix that❤️</p>
         )}
       </div>
     </div>

@@ -1,0 +1,220 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 60px;
+  background-color: #0b0b0f;
+  color: #f5f5f5;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+  font-family: 'Inter', sans-serif;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+}
+
+.logo {
+  font-size: 28px;
+  font-weight: 700;
+  background: linear-gradient(90deg, #00b4ff, #9b5cff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.5px;
+  text-decoration: none;
+  transition: transform 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.05);
+}
+
+.tagline {
+  font-size: 13px;
+  color: #9ca3af;
+  letter-spacing: 0.5px;
+}
+
+.navbar-center {
+  display: flex;
+  gap: 30px;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.ant-menu {
+  background-color: transparent !important;
+  border-bottom: none !important;
+  font-family: 'Inter', sans-serif;
+}
+
+.ant-menu-horizontal:not(.ant-menu-light) > .ant-menu-item,
+.ant-menu-horizontal:not(.ant-menu-light) > .ant-menu-submenu,
+.ant-menu-horizontal:not(.ant-menu-light) > .ant-menu-item-selected,
+.ant-menu-horizontal:not(.ant-menu-light) > .ant-menu-submenu-selected {
+  color: #e0e0e0 !important;
+  font-weight: 500;
+  font-size: 15px;
+  margin: 0 5px;
+}
+
+.ant-menu-horizontal:not(.ant-menu-light) > .ant-menu-item:hover,
+.ant-menu-horizontal:not(.ant-menu-light) > .ant-menu-submenu:hover{
+  color: #00b4ff !important;
+}
+
+.ant-menu-horizontal:not(.ant-menu-light) > .ant-menu-item-active,
+.ant-menu-horizontal:not(.ant-menu-light) > .ant-menu-submenu-active {
+  background-color: #0b0b0f !important;
+}
+
+.ant-menu-horizontal:not(.ant-menu-light) > .ant-menu-item-selected {
+  background-color: #0b0b0f;
+  border-bottom: 2px solid transparent !important; 
+}
+
+.ant-menu-horizontal:not(.ant-menu-light) > .ant-menu-item-selected::after {
+    content: '';
+    display: block;
+    height: 3px;
+    background: #0b0b0f;
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    right: 0;
+    transition: width 0.3s ease;
+}
+
+.search-container {
+  display: flex;
+  width: 400px; 
+  height: 32px;
+  background-color: #1a1a2e; 
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+.search-input {
+  flex-grow: 1; 
+  border: none; 
+  outline: none; 
+  background-color: transparent; 
+  color: white; 
+  padding: 10px 20px 10px 20px;
+  border-radius: 0; 
+}
+
+.ant-input::placeholder {
+  color: #bfbfbf;
+  opacity: 0.8;
+}
+
+.search-input:focus {
+  border-color: #00b4ff !important;
+  box-shadow: 0 0 5px #00b4ff;
+}
+
+.search-input:hover,
+.search-input:focus {
+  background-color: #1a1a2e !important;
+  border-color: #00b4ff !important;
+  box-shadow: 0 0 5px #00b4ff;
+}
+
+
+.search-button {
+  border: none;
+  background-image: linear-gradient(to right, #007bff, #8a2be2);
+  color: white;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 0; 
+  flex-shrink: 0; 
+}
+
+.search-button:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+
+.hamburger-icon {
+  display: none;
+  font-size: 26px;
+  cursor: pointer;
+  color: white;
+}
+
+@media (max-width: 768px) {
+
+  .navbar {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 20px;
+  }
+
+  .hamburger-icon {
+    display: block;
+    font-size: 24px;
+    cursor: pointer;
+  }
+
+  .navbar-right {
+    display: none;
+    width: 100%;
+    background: #0b0b0f;
+    padding: 15px 0;
+    margin-top: 12px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .navbar-right.open {
+    display: flex;
+    animation: slideDown 0.25s ease;
+  }
+
+  @keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .tagline {
+    font-size: 11px;
+    margin-top: -5px;
+  }
+
+  .search-container {
+    width: 70%;
+    margin: 0 auto;
+  }
+
+  .search-input {
+    width: 100%;
+  }
+
+  .navbar-menu {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .ant-menu-horizontal {
+    width: 100%;
+    border: none !important;
+  }
+}
+

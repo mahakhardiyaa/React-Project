@@ -4,10 +4,12 @@ import { fetchMovies } from "../api/service";
 import MovieCard from "../components/MovieCard";
 import Navbar from "../components/Navbar";
 import Footer from "../components/footer";
+import MovieCarousel from "../components/MovieCarousel";
 import "../static/css/HomePage.css";
 
 function HomePage() {
-  const [searchTerm, setSearchTerm] = useState("mean");
+
+  const [searchTerm] = useState("summer");
 
   const { data = {}, isLoading, refetch } = useQuery({
     queryKey: ["movies", searchTerm],
@@ -17,12 +19,6 @@ function HomePage() {
 
   const movies = data.movies || [];
   const error = data.error;
-
-  const handleSearch = () => {
-    if (searchTerm.trim() !== "") {
-      refetch();
-    }
-  };
 
   useEffect(() => {
     const handler = setTimeout(() => {
@@ -36,12 +32,9 @@ function HomePage() {
 
   return (
     <>
-      <Navbar
-        searchTerm={searchTerm}
-        setSearchTerm={setSearchTerm}
-        handleSearch={handleSearch}
-      />
-      <div className="homepage-container">
+      <Navbar/>
+      <MovieCarousel />
+        <div className="homepage-container">
         {isLoading ? (
           <p className="loading-text">Loading...</p>
         ) : error ? (
@@ -51,7 +44,8 @@ function HomePage() {
         ) : (
           <>
           <div className="homepage-title">
-            <h3>Now Streaming!</h3>
+            <h3>Welcome aboard!
+              Today’s Showtime Starts With Your Search✨</h3>
           </div>
             <div className="movies-grid">
               {movies.map((movie, index) => (
@@ -61,7 +55,7 @@ function HomePage() {
           </>
         )}
       </div>
-      <Footer/>
+      <Footer />
     </>
   );
 }

@@ -1,0 +1,134 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+.homepage-container {
+  background: radial-gradient(circle at top, #0e0e18, #060608 70%);
+  min-height: 100vh;
+  padding: 40px 60px;
+  color: white;
+  font-family: 'Inter', sans-serif;
+  text-align: center;
+  animation: fadeIn 0.8s ease-out;
+}
+
+.homepage-title {
+  font-size: 1.6rem;
+  background: linear-gradient(90deg, #00b4ff, #9b5cff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: flex;
+  justify-content: center;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  margin-bottom: 40px;
+  animation: slideInDown 1s ease-out;
+}
+
+.movies-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(280px, max-content)) !important; 
+  gap: 32px !important;
+  justify-content: center !important;
+  animation: fadeInUp 1s ease-in;
+}
+
+.loading-text {
+  color: #aaa;
+  font-size: 1.1rem;
+  margin-top: 80px;
+  text-align: center;
+}
+
+.custom-pagination {
+  display: flex;
+  justify-content: center;
+  margin: 35px 0;
+}
+
+.ant-pagination-item {
+  background: #0d1b2a !important;      
+  border: none !important;
+  border-radius: 10px !important;      
+  transition: 0.3s ease;
+  min-width: 48px;                    
+  height: 45px;                        
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ant-pagination-item a {
+  color: #e0e8ff !important;           
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.ant-pagination-item:hover {
+  background: #1b263b !important;       
+  transform: translateY(-2px);
+}
+
+.ant-pagination-item:hover a {
+  color: #ffffff !important;
+}
+
+.ant-pagination-item-active {
+  background: #415a77 !important;      
+}
+
+.ant-pagination-item-active a {
+  color: white !important;
+  font-weight: 600;
+}
+
+.ant-pagination-prev button,
+.ant-pagination-next button {
+  background: #0d1b2a !important;
+  border-radius: 10px !important;
+  border: none !important;
+  width: 48px;
+  height: 45px;
+  color: #e0e8ff !important;
+  transition: 0.3s ease;
+}
+
+.ant-pagination-prev button:hover,
+.ant-pagination-next button:hover {
+  background: #1b263b !important;
+  transform: translateY(-2px);
+  color: #ffffff !important;
+}
+
+.ant-pagination-jump-prev,
+.ant-pagination-jump-next {
+  color: #9db4c0 !important;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 768px) {
+  .homepage-container {
+    padding: 40px 25px;
+  }
+
+  .homepage-title {
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+  }
+
+  .movies-grid {
+    gap: 20px;
+  }
+}

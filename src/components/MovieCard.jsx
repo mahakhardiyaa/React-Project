@@ -1,65 +1,69 @@
-import { Card, Button } from "antd";
-import { useDispatch, useSelector } from "react-redux"; 
+import { useState } from "react";
+import { Card, Button, Tooltip } from "antd";
+import { useDispatch, useSelector } from "react-redux";
 import { addToFavorites, removeFromFavorites } from "../features/favorites/favoritesSlice";
-import "../index.css";
+import { useNavigate } from "react-router-dom";
+import defaultPlaceholder from "./assets/default.jpg";
+import "../static/css/index.css";
 
 const MovieCard = ({ movie }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const favorites = useSelector((state) => state.favorites.movies);
+  const [posterError, setPosterError] = useState(false);
 
   const isFavorite = favorites.some((fav) => fav.imdbID === movie.imdbID);
 
-  const handleToggleFavorite = () => {
-    if (isFavorite) {
-      dispatch(removeFromFavorites(movie.imdbID)); 
-    } else {
-      dispatch(addToFavorites(movie)); 
-    }
+  const handleFavorite = () => {
+    isFavorite ? dispatch(removeFromFavorites(movie.imdbID)) : dispatch(addToFavorites(movie));
+  };
+
+  const handleClick = () => {
+    navigate(`/movie/${movie.imdbID}`);
+  };
+
+  const renderImage = () => {
+    const isValidPoster = movie.Poster && movie.Poster !== "N/A";
+    const imgSrc = isValidPoster && !posterError ? movie.Poster : defaultPlaceholder;
+
+    return (
+      <img
+        alt={movie.Title || "Placeholder"}
+        src={imgSrc}
+        className="movie-poster"
+        onError={() => setPosterError(true)}
+      />
+    );
   };
 
   return (
-    <Card
-      className="custom-card"
-      style={{
-        width: 280,
-        margin: "10px auto",
-        fontFamily: "Sans-serif",
-        backgroundColor: "black",
-        color: "white",
-      }}
-      cover={
-        movie.Poster && movie.Poster !== "N/A" ? (
-          <img
-            alt={movie.Title}
-            src={movie.Poster}
-            style={{ height: 400, objectFit: "cover" }}
-          />
-        ) : (
-          <div
-            style={{
-              height: 300,
-              background: "#f0f0f0",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            No Image
-          </div>
-        )
-      }
-    >
-      <h3>{movie.Title || "No Title"}</h3>
-      <p>Year: {movie.Year || "N/A"}</p>
+  <Card className="movie-card" cover={renderImage()} onClick={handleClick} >
+    <div className="movie-details" >
+
+      <Tooltip title={movie.Title || "Untitled"}>
+        <h3 className="movie-title">
+          {movie.Title || "Untitled"}
+        </h3>
+      </Tooltip>
+      
+      <p className="movie-year">🎬 {movie.Year || "N/A"}</p>
+    </div>
+
+    <div className="movie-button-container"> 
       <Button
         type={isFavorite ? "primary" : "default"}
         block
-        onClick={handleToggleFavorite}
+        className="favorite-btn"
+        onClick={(e) => {
+          e.stopPropagation();
+          handleFavorite();
+        }}
       >
-        {isFavorite ? "Remove from Favorites" : "Add to Favorites"}
+        {isFavorite ? "★ Remove from Favorites" : "☆ Add to Favorites"}
       </Button>
-    </Card>
-  );
+    </div>
+  </Card>
+);
 };
 
 export default MovieCard;
