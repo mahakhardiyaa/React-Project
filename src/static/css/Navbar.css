@@ -16,10 +16,11 @@
 }
 
 .navbar-left {
-  display: flex;
+  display: flex; 
   flex-direction: column;
   align-items: flex-start;
   gap: 2px;
+  line-height: normal; 
 }
 
 .logo {
@@ -31,6 +32,7 @@
   letter-spacing: -0.5px;
   text-decoration: none;
   transition: transform 0.3s ease;
+  margin: 0;
 }
 
 .logo:hover {
@@ -41,6 +43,7 @@
   font-size: 13px;
   color: #9ca3af;
   letter-spacing: 0.5px;
+  margin : 0;
 }
 
 .navbar-center {
@@ -89,7 +92,7 @@
     content: '';
     display: block;
     height: 3px;
-    background: #0b0b0f;
+    background: linear-gradient(90deg, #00b4ff, #9b5cff);
     position: absolute;
     bottom: 0px;
     left: 0;
@@ -97,124 +100,106 @@
     transition: width 0.3s ease;
 }
 
-.search-container {
-  display: flex;
-  width: 400px; 
-  height: 32px;
-  background-color: #1a1a2e; 
-  border-radius: 24px;
-  overflow: hidden;
+.ant-drawer-header {
+  background-color: #0b0b0f;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.search-input {
-  flex-grow: 1; 
-  border: none; 
-  outline: none; 
-  background-color: transparent; 
-  color: white; 
-  padding: 10px 20px 10px 20px;
-  border-radius: 0; 
+.ant-drawer-title {
+  color: #f5f5f5;
 }
 
-.ant-input::placeholder {
-  color: #bfbfbf;
-  opacity: 0.8;
+.ant-drawer-body {
+  background-color: #0b0b0f;
 }
 
-.search-input:focus {
-  border-color: #00b4ff !important;
-  box-shadow: 0 0 5px #00b4ff;
-}
-
-.search-input:hover,
-.search-input:focus {
-  background-color: #1a1a2e !important;
-  border-color: #00b4ff !important;
-  box-shadow: 0 0 5px #00b4ff;
+.ant-menu-vertical {
+  background-color: transparent !important;
 }
 
 
-.search-button {
-  border: none;
-  background-image: linear-gradient(to right, #007bff, #8a2be2);
-  color: white;
-  padding: 10px 20px;
-  cursor: pointer;
-  border-radius: 0; 
-  flex-shrink: 0; 
+.ant-menu-vertical > .ant-menu-item,
+.ant-menu-vertical > .ant-menu-item-selected {
+  color: #e0e0e0 !important;
 }
 
-.search-button:hover {
-  transform: scale(1.05);
-  opacity: 0.9;
+.ant-menu-vertical > .ant-menu-item:hover {
+  color: #00b4ff !important;
 }
 
-.hamburger-icon {
+.mobile-menu-button {
   display: none;
-  font-size: 26px;
-  cursor: pointer;
-  color: white;
+}
+
+.desktop-menu {
+  display: flex !important;
+}
+
+.mobile-drawer .ant-drawer-content-wrapper,
+.mobile-drawer .ant-drawer-content {
+    background-color: #0b0b0f;
+}
+
+.mobile-drawer .ant-drawer-header {
+  background-color: #0b0b0f; 
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 @media (max-width: 768px) {
-
   .navbar {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
     padding: 12px 20px;
   }
 
-  .hamburger-icon {
+  .mobile-menu-button {
     display: block;
-    font-size: 24px;
-    cursor: pointer;
+    background: linear-gradient(90deg, #00b4ff, #9b5cff);
+    border: none;
+  }
+  .mobile-menu-button:hover {
+    opacity: 0.9;
   }
 
-  .navbar-right {
-    display: none;
-    width: 100%;
-    background: #0b0b0f;
-    padding: 15px 0;
-    margin-top: 12px;
-    border-top: 1px solid rgba(255,255,255,0.1);
-    flex-direction: column;
-    gap: 15px;
-  }
-
-  .navbar-right.open {
-    display: flex;
-    animation: slideDown 0.25s ease;
-  }
-
-  @keyframes slideDown {
-    from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); }
+  .desktop-menu {
+    display: none !important;
   }
 
   .tagline {
     font-size: 11px;
-    margin-top: -5px;
   }
 
-  .search-container {
-    width: 70%;
-    margin: 0 auto;
+  .mobile-drawer .ant-drawer-title {
+    color: #f5f5f5;
   }
 
-  .search-input {
-    width: 100%;
+  .mobile-drawer .ant-drawer-close {
+    color: #f5f5f5;
   }
 
-  .navbar-menu {
-    width: 100%;
-    display: flex;
-    justify-content: center;
+  .mobile-drawer .ant-drawer-body {
+    background-color: #0b0b0f; 
   }
 
-  .ant-menu-horizontal {
-    width: 100%;
-    border: none !important;
+  .mobile-drawer .ant-menu {
+    background-color: transparent !important;
   }
+
+  .mobile-drawer .ant-menu-vertical > .ant-menu-item,
+  .mobile-drawer .ant-menu-vertical > .ant-menu-item-selected {
+    color: #e0e0e0 !important;
+  }
+
+  .mobile-drawer .ant-menu-vertical > .ant-menu-item:hover {
+    color: #00b4ff !important;
+  }
+
+  .mobile-drawer .ant-menu-item-selected {
+    background-color: transparent !important;
+    color: #00b4ff !important; 
+  }
+
+  .mobile-drawer .ant-menu-item:hover {
+    background-color: transparent !important;
+    color: #00b4ff !important;
+  }
+
 }
-

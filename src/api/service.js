@@ -15,6 +15,8 @@ export async function fetchMovies(searchTerm, page = 1) {
 
   const data = await res.json();
 
+  console.log(data);
+
   if (data.Response === "False") {
     return { movies: [], error: data.Error };
   }

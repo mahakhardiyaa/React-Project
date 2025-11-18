@@ -17,7 +17,7 @@ const FavoritesPage = () => {
             <MovieCard key={movie.imdbID} movie={movie} />
           ))
         ) : (
-          <p style={{ color: "gray" }}>Oops… no favorites yet! Let’s fix that❤️</p>
+          <p style={{ color: "gray" }}>Oops… no favorites yet! Let's fix that ❤️</p>
         )}
       </div>
     </div>

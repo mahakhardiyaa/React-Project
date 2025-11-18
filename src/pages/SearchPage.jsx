@@ -2,12 +2,18 @@ import { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { fetchMovies } from "../api/service";
 import MovieCard from "../components/MovieCard";
+import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/footer";
+import { Input, Button, Menu } from "antd";
+import { SearchOutlined } from "@ant-design/icons";
 import { Pagination } from "antd";
 import "../static/css/HomePage.css";
 
 function SearchPage() {
+
+  const navigate = useNavigate();
+
   const [searchTerm, setSearchTerm] = useState("mean");
   const [debounced, setDebounced] = useState(searchTerm);
   const [page, setPage] = useState(1);
@@ -25,8 +31,7 @@ function SearchPage() {
     queryKey: ["movies", debounced, page],
     queryFn: () => fetchMovies(debounced, page),
     enabled: debounced.trim() !== "",
-    staleTime: 5 * 60 * 1000,
-    keepPreviousData: true,  
+    staleTime: 5 * 60 * 1000
   });
 
   const movies = data.movies || [];
@@ -38,14 +43,35 @@ function SearchPage() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  const handleSearch = () => {
+    setDebounced(searchTerm);
+    setPage(1);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <>
-      <Navbar
-        searchTerm={searchTerm}
-        setSearchTerm={setSearchTerm}
-      />
+      <Navbar/>
 
       <div className="homepage-container">
+         <div className="search-container">
+          <Input
+            placeholder="Search your next blockbuster"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            onPressEnter={handleSearch}
+            className="search-input"
+            onClick={() => navigate("/search")}
+          />
+          <Button
+            type="primary"
+            icon={<SearchOutlined />}
+            onClick={handleSearch}
+            className="search-button"
+          >
+            Search
+          </Button>
+        </div>
         {isFetching && <p className="loading-text">Loading...</p>}
 
         {!isFetching && error && (

@@ -4,6 +4,7 @@ import SearchPage from './pages/SearchPage';
 import MovieDetails from './pages/MovieDetails'
 import FavoritesPage from './pages/Favorites';
 import './static/css/index.css'
+import Parent from "./pages/Parent"
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
         <Route path="/movie/:id" element={<MovieDetails />} />
       </Routes>
     </Router>
+    {/* <Parent/> */}
     </>
   );
 }

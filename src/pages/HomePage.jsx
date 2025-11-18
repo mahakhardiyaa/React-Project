@@ -43,10 +43,6 @@ function HomePage() {
           <h3 className="loading-text">No Results found!</h3>
         ) : (
           <>
-          <div className="homepage-title">
-            <h3>Welcome aboard!
-              Today’s Showtime Starts With Your Search✨</h3>
-          </div>
             <div className="movies-grid">
               {movies.map((movie, index) => (
                 <MovieCard key={index} movie={movie} />

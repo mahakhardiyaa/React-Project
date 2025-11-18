@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addToFavorites, removeFromFavorites } from "../features/favorites/favoritesSlice";
 import { Button } from "antd";
 import Navbar from "../components/Navbar";
+import Footer from "../components/footer";
 import "../static/css/MovieDetails.css";
 import defaultPlaceholder from "./assets/default.jpg";
 
@@ -77,6 +78,7 @@ const MovieDetails = () => {
           </Button>
         </div>
       </div>
+      <Footer />
     </>
   );
 }
